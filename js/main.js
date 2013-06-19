@@ -12,25 +12,69 @@
 
   App.Models.Task = Backbone.Model.extend({});
 
+  App.Collections.Tasks = Backbone.Collection.extend({
+    model: App.Models.Task
+  });
+
   App.Views.Task = Backbone.View.extend({
     tagName: 'li',
+
+    template: template('taskTemplate'),
+
     initialize: function () {
-      this.render();
+      this.model.on('change:title', this.render, this);
     },
+
+    events: {
+      'dblclick span.edit': 'editTask'
+    },
+
+    editTask: function () {
+      var newTaskTitle = prompt('Edit Task', this.model.get('title'));
+      if(!$.trim(newTaskTitle)) return;
+
+      this.model.set('title', newTaskTitle);
+    },
+
     render: function () {
-      this.$el.html( this.model.get('title'));
+      var template = this.template(this.model.toJSON());
+      this.$el.html(template);
       return this;
     }
   });
 
-  var task = new App.Models.Task({
-    title: 'Go to store',
-    priority: 4
+  App.Views.Tasks = Backbone.View.extend({
+    tagName: 'ul',
+
+    render: function () {
+      this.collection.each(this.addOne, this);
+      return this;
+    },
+
+    addOne: function (task) {
+      var taskView = new App.Views.Task({model: task});
+      return this.$el.append(taskView.render().el);
+    }
   });
 
-  var taskView = new App.Views.Task({model:task});
+  var tasks = new App.Collections.Tasks([
+    {
+      title: 'Go to store',
+      priority: 4
+    },
+    {
+      title: 'Buy Milk',
+      priority: 2
+    },
+    {
+      title: 'Buy Beer',
+      priority: 5
+    }
+  ]);
 
-  $('div.lead').html(taskView.el);
+  var taskList = new App.Views.Tasks({collection:tasks});
+
+  $('.lead').html(taskList.render().el);
 
   return App;
 })();

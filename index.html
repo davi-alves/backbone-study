@@ -57,6 +57,8 @@
         margin: 20px 0;
       }
 
+      span.edit{cursor: pointer;}
+
     </style>
   <link rel="stylesheet" href="css/bootstrap/css/bootstrap-responsive.min.css">
 </head>
@@ -88,6 +90,10 @@
 
   <script id="personTemplate" type="text/template">
     <strong><%= name %></strong> (<%= age %>) - <%= occupation %>
+  </script>
+  <script id="taskTemplate" type="text/template">
+    <span class="edit"><%= title %></span>
+    <button class="delete">Delete</button>
   </script>
   <script src="js/libs/underscore.js"></script>
   <script src="js/libs/jquery.js"></script>
