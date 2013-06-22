@@ -14,15 +14,25 @@
   App.Router = Backbone.Router.extend({
     routes: {
       '': 'index',
-      'appointment/:id': 'showAppointment'
+      'show/:id': 'show',
+      'download/:id/*filename': 'download',
+      '*other': 'default'
     },
 
     index: function () {
       console.log('index');
     },
 
-    showAppointment: function (appointmentId) {
-      console.log(appointmentId);
+    show: function (id) {
+      console.log('show route with id:' + id);
+    },
+
+    download: function (id, filename) {
+      console.log('download route with id:' + id + ' and file:' + filename);
+    },
+
+    default: function (other) {
+      console.log('A rota "' + other + '" não existe');
     }
 
   });

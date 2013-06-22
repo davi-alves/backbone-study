@@ -4,63 +4,8 @@
   <meta charset="UTF-8">
   <title>Backbone - Study</title>
   <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-  <style type="text/css">
-
-      /* Sticky footer styles
-      -------------------------------------------------- */
-
-      html,
-      body {
-        height: 100%;
-        /* The html and body elements cannot have any padding or margin. */
-      }
-
-      /* Wrapper for page content to push down footer */
-      #wrap {
-        min-height: 100%;
-        height: auto !important;
-        height: 100%;
-        /* Negative indent footer by it's height */
-        margin: 0 auto -60px;
-      }
-
-      /* Set the fixed height of the footer here */
-      #push,
-      #footer {
-        height: 60px;
-      }
-      #footer {
-        background-color: #f5f5f5;
-      }
-
-      /* Lastly, apply responsive CSS fixes as necessary */
-      @media (max-width: 767px) {
-        #footer {
-          margin-left: -20px;
-          margin-right: -20px;
-          padding-left: 20px;
-          padding-right: 20px;
-        }
-      }
-
-
-
-      /* Custom page CSS
-      -------------------------------------------------- */
-      /* Not required for template or sticky footer method. */
-
-      .container {
-        width: auto;
-        max-width: 680px;
-      }
-      .container .credit {
-        margin: 20px 0;
-      }
-
-      span.edit{cursor: pointer;}
-
-    </style>
   <link rel="stylesheet" href="css/bootstrap/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" href="css/custom.css">
 </head>
 <body>
   <!-- Part 1: Wrap all page content here -->
@@ -71,8 +16,11 @@
       <div class="page-header">
         <h1>Backbone</h1>
       </div>
-      <div class="lead">
-
+      <div class="lead" id="addTask">
+        <!--<form action="" class="form-inline">
+          <input type="text" class="input-medium" placeholder="Your new Task">
+          <input type="submit" class="btn btn-success" value="Add Task">
+        </form>-->
       </div>
       <!-- <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.</p>
       <p>Use <a href="./sticky-footer-navbar.html">the sticky footer</a> with a fixed navbar if need be, too.</p> -->
@@ -93,7 +41,7 @@
   </script>
   <script id="taskTemplate" type="text/template">
     <span class="edit"><%= title %></span>
-    <button class="delete">Delete</button>
+    <button class="delete btn btn-small btn-danger">Delete</button>
   </script>
   <script src="js/libs/underscore.js"></script>
   <script src="js/libs/jquery.js"></script>
